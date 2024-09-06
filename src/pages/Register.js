@@ -69,6 +69,7 @@ import '../css/Auth.css'; // Create and link your custom CSS
 
 function Register() {
   const [username, setUsername] = useState('');
+  const [mobilenumber, setMobilnumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -77,7 +78,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await registerUser({ username, email, password });
+      const response = await registerUser({ username, mobilenumber, email, password });
       console.log('Registration success:', response.data);
       navigate('/login');
     } catch (error) {
@@ -91,8 +92,10 @@ function Register() {
       <h1 className="page-title">Register</h1>
       {error && <p style={{color: 'red'}}>{error}</p>}
       <form onSubmit={handleSubmit} className="auth-form">
-        <label>Username</label>
+        <label>User Name</label>
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        <label>Mobile Number</label>
+        <input type="text" value={mobilenumber} onChange={(e) => setMobilnumber(e.target.value)} required />
 
         <label>Email</label>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
